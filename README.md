@@ -21,12 +21,27 @@ Then the trainer renames original savegame to `*.bak` and writes unpacked and pa
 ### Examples
 
 ```
-python -B homm3.py 1.GM1 Vidomina 82
+>>> python -B homm3.py 1.GM1
+
+Enter hero name:
+>>> vidomina
+Enter item ID (see readme.md):
+>>> 82
+
+Free slot found at position 0x3D5AD
+Cloak of undead king was added to hero's inventory slot 1
+353169 bytes written
+Press Enter to continue...
 ```
 Adds Cloak of Undead King to hero Vidomina.
 
 ```
-python -B homm3.py 1.GM1 Sandro s09
+>>> python -B homm3.py 1.GM1 Sandro s09
+
+Free slot found at position 0x3AF37
+Spell scroll with "Town Portal" was added to hero's inventory slot 1
+353169 bytes written
+Press Enter to continue...
 ```
 Adds scroll with Town Portal to hero Sandro.
 

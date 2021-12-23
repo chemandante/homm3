@@ -3,6 +3,212 @@ import shutil
 
 from sys import argv
 
+dicItems = {
+    # Artifacts
+    "07": "Centaur's axe",
+    "08": "Blackshard of the dead knight",
+    "09": "Greater Gnoll's Fail",
+    "0A": "Ogre's club of havoc",
+    "0B": "Sword of Hellfire",
+    "0C": "Titan's gladius",
+    "0D": "Shield of the dwarven lords",
+    "0E": "Shield of the yawning dead",
+    "0F": "Buckler of the gnoll king",
+    "10": "Targ of the rampaging ogre",
+    "11": "Shield of the dammed",
+    "12": "Sentinel's Shield",
+    "13": "Helm of the alabaster unicorn",
+    "14": "Skull helmet",
+    "15": "Helm of chaos",
+    "16": "Crown of the supreme magi",
+    "17": "Hellstorm helmet",
+    "18": "Thunder helmet",
+    "19": "Beastplate of petrified wood",
+    "1A": "Rib cage",
+    "1B": "Scales of the greater balilisk",
+    "1C": "Tunic of the cyclops king",
+    "1D": "Breastplate of brimstone",
+    "1E": "Titan's cuirass",
+    "1F": "Armor of wonder",
+    "20": "Sandals of the saint",
+    "21": "Celestial necklace of bliss",
+    "22": "Lion's shield of courage",
+    "23": "Sword of judgement",
+    "24": "Helm of hevenly enlightenment",
+    "25": "Quiet eye of the dragon",
+    "26": "Red dragon flame tongue",
+    "27": "Dragon scale shield",
+    "28": "Dragon scale armor",
+    "29": "Dragonbone greaves",
+    "2A": "Dragon wing tabard",
+    "2B": "Neckace of dragonteeth",
+    "2C": "Crown of dragontooth",
+    "2D": "Still eye of the dragon",
+    "2E": "Clover of fortune",
+    "2F": "Cards of prophecy",
+    "30": "Ladybird of luck",
+    "31": "Badge of courage",
+    "32": "Crest of valor",
+    "33": "Gryph of gallantry",
+    "34": "Speculum",
+    "35": "Spyglass",
+    "36": "Amulet of the undertaker",
+    "37": "Vampire's cowl",
+    "38": "Dead men's boots",
+    "39": "Garniture of interference",
+    "3A": "Surcoat of counterpoise",
+    "3B": "Boots of polarity",
+    "3C": "Bow of elven cherrywood",
+    "3D": "Bowstring of the unicorns's mane",
+    "3E": "Angel feather arrows",
+    "3F": "Bird of perception",
+    "40": "Stoic watchman",
+    "41": "Emblem of cognizance",
+    "42": "Statesmen's medal",
+    "43": "Diplomat Ring",
+    "44": "Ambassador's sash",
+    "45": "Ring of the wayfarer",
+    "46": "Equestrian's gloves",
+    "47": "Necklace of ocean guidance",
+    "48": "Angel wings",
+    "49": "Charm of mana",
+    "4A": "Talisman of mana",
+    "4B": "Mystic orb of mana",
+    "4C": "Collar of conjuring",
+    "4D": "Ring of conjuring",
+    "4E": "Cape of conjuring",
+    "4F": "Orb of firmament",
+    "50": "Orb of silt",
+    "51": "Orb of tempestous fire",
+    "52": "Orb of driving rain",
+    "53": "Recanter's cloak",
+    "54": "Spirit of opression",
+    "55": "Hourglass of the evil hour",
+    "56": "Tome of fire magic",
+    "57": "Tome of wind magic",
+    "58": "Tome of water magic",
+    "59": "Tome of earth magic",
+    "5A": "Boots of levitation",
+    "5B": "Golden bow",
+    "5C": "Sphere of permanence",
+    "5D": "Orb of vulnerability",
+    "5E": "Ring of vitality",
+    "5F": "Ring of life",
+    "60": "Vail of lifeblood",
+    "61": "Necklace of swiftness",
+    "62": "Boots of speed",
+    "63": "Cape of velocity",
+    "64": "Pendant of dispassion",
+    "65": "Pendant of second sight",
+    "66": "Pendant of holiness",
+    "67": "Pendant of life",
+    "68": "Pendant of death",
+    "69": "Pendant of free will",
+    "6A": "Pendant of agitation",
+    "6B": "Pendant of total recall",
+    "6C": "Pendant of courage",
+    "6D": "Everflowing cristal cloak",
+    "6E": "Ring of infinite gems",
+    "6F": "Everpouring vial of mercury",
+    "70": "Inexhaustable cart of ore",
+    "71": "Eversmoking ring of sulfur",
+    "72": "Inexhaustable cart of lumber",
+    "73": "Endless sack of gold",
+    "74": "Endless bag of gold",
+    "75": "Endless purse of gold",
+    "76": "Legs of legion",
+    "77": "Loins of legion",
+    "78": "Torso of legion",
+    "79": "Arms of legion",
+    "7A": "Head of legion",
+    "7B": "Sea capitan's hat",
+    "7C": "Spellbinder's hat",
+    "7D": "Shackles of war",
+    "7E": "Orb of inhibition",
+    "7F": "Vial of dragonblood",
+    "80": "Armageddon's blade",
+    "81": "Angelic alliance",
+    "82": "Cloak of undead king",
+    "83": "Elixir of life",
+    "84": "Armor of the dammed",
+    "85": "Statue of legions",
+    "86": "Power of the dragon father",
+    "87": "Titans lightning",
+    "88": "Admiral's hat",
+    "89": "Archer's bow",
+    # Spell scrolls
+    "s00": "Summon Boat",
+    "s01": "Scuttle Boat",
+    "s02": "Visions",
+    "s03": "View Earth",
+    "s04": "Disguise",
+    "s05": "View Air",
+    "s06": "Fly",
+    "s07": "Water Walk",
+    "s08": "Dimension Door",
+    "s09": "Town Portal",
+    "s0A": "Quick Sand",
+    "s0B": "Land Mine",
+    "s0C": "Force Field",
+    "s0D": "Fire Wall",
+    "s0E": "Earthquake",
+    "s0F": "Magic Arrow",
+    "s10": "Ice Bolt",
+    "s11": "Lightning Bolt",
+    "s12": "Implosion",
+    "s13": "Chain Lightning",
+    "s14": "Frost Ring",
+    "s15": "Fireball",
+    "s16": "Inferno",
+    "s17": "Meteor Shower",
+    "s18": "Death Ripple",
+    "s19": "Destroy Undead",
+    "s1A": "Armageddon",
+    "s1B": "Shield",
+    "s1C": "Air Shield",
+    "s1D": "Fire Shield",
+    "s1E": "Protection from Air",
+    "s1F": "Protection from Fire",
+    "s20": "Protection from Water",
+    "s21": "Protection from Earth",
+    "s22": "Anti-Magic",
+    "s23": "Dispel",
+    "s24": "Magic Mirror",
+    "s25": "Cure",
+    "s26": "Resurrection",
+    "s27": "Animate Dead",
+    "s28": "Sacrifice",
+    "s29": "Bless",
+    "s2A": "Curse",
+    "s2B": "Bloodlust",
+    "s2C": "Precision",
+    "s2D": "Weakness",
+    "s2E": "Stone Skin",
+    "s2F": "Disrupting Ray",
+    "s30": "Prayer",
+    "s31": "Mirth",
+    "s32": "Sorrow",
+    "s33": "Fortune",
+    "s34": "Misfortune",
+    "s35": "Haste",
+    "s36": "Slow",
+    "s37": "Slayer",
+    "s38": "Frenzy",
+    "s39": "Titan's Lightning Bolt",
+    "s3A": "Counterstrike",
+    "s3B": "Berserk",
+    "s3C": "Hypnotize",
+    "s3D": "Forgetfulness",
+    "s3E": "Blind",
+    "s3F": "Teleport",
+    "s40": "Remove Obstacle",
+    "s41": "Clone",
+    "s42": "Fire Elemental",
+    "s43": "Earth Elemental",
+    "s44": "Water Elemental",
+    "s45": "Air Elemental"
+}
+
 
 def my_exit(exit_code):
     input("Press Enter to continue...")
@@ -18,6 +224,7 @@ gm_file = argv[1]
 gm_content = []
 hero = ""
 itemID = 0
+itemName = ""
 bSpell = False
 
 if len(argv) > 2:
@@ -27,12 +234,17 @@ else:
     hero = input("Enter hero name:\n")
     itemID = input("Enter item ID (see readme.md):\n")
 
+print("")
+
 hero = hero.capitalize()
 # Parse item ID (spell or artifact)
 if itemID[0].lower() == 's':
     try:
         itemID = int(itemID[1:], 16)
-        if itemID > 0x45:
+        tmp = "s{:02X}".format(itemID)
+        if tmp in dicItems:
+            itemName = "Spell scroll with \"" + dicItems[tmp] + "\""
+        else:
             raise ValueError
         bSpell = True
 
@@ -41,9 +253,12 @@ if itemID[0].lower() == 's':
         my_exit(1)
 else:
     try:
-        itemID = int(itemID, 16)
-        if itemID < 0x07 or itemID > 0x89:
+        tmp = itemID.upper()
+        if tmp in dicItems:
+            itemName = dicItems[tmp]
+        else:
             raise ValueError
+        itemID = int(itemID, 16)
 
     except ValueError:
         print("Invalid artifact ID")
@@ -87,7 +302,8 @@ while d < 64:
 
 if d < 64:
     c += d * 8
-    print("Free slot found at position 0x{:X} (inventory slot {})".format(c, d + 1))
+    print("Free slot found at position 0x{:X}".format(c))
+    print("{} was added to hero's inventory slot {}".format(itemName, d + 1))
     # Adding item
     if bSpell:
         gm_content[c:c + 4] = 0x01.to_bytes(4, byteorder='little')
