@@ -8,7 +8,8 @@ Usage:
 python -B homm3.py <savegame> [<hero name> <item ID>]
 ```
 
-This trainer takes savegame file, looks for a hero by **hero name** and adds artifact with specified **item ID** at the first available inventory slot (backpack). When **hero name** and **item ID** are not specified in command-line, trainer will ask for it.
+This trainer takes savegame file, looks for a hero by **hero name** and adds artifact with specified **item ID** at the first available inventory slot (backpack).
+When **hero name** and **item ID** are not specified in command-line, trainer will ask for it. In this case you can enter part ot the item name (at least 4 chars) as **item ID**. If there are more than one item containing that part of the name, you have to choose what item to pup into inventory (see examples).
 
 ```
 <item ID> := <artifact ID> | s<spell ID>
@@ -20,12 +21,14 @@ Then the trainer renames original savegame to `*.bak` and writes unpacked and pa
 
 ### Examples
 
+Adding Cloak of Undead King to hero Vidomina in dialog mode by ID (CoUK has ID 82):
 ```
 >>> python -B homm3.py 1.GM1
 
 Enter hero name:
 >>> vidomina
-Enter item ID (see readme.md):
+Enter item: Artifact ID, Spell ID prefixed with 's', artifact/spell name
+(at least 4 chars part of the name, see readme.md):
 >>> 82
 
 Free slot found at position 0x3D5AD
@@ -33,8 +36,28 @@ Cloak of undead king was added to hero's inventory slot 1
 353169 bytes written
 Press Enter to continue...
 ```
-Adds Cloak of Undead King to hero Vidomina.
 
+Adding Cloak of Undead King to hero Vidomina in dialog mode by part of name:
+```
+Enter hero name:
+>>> vidomina
+Enter item: Artifact ID, Spell ID prefixed with 's', artifact/spell name
+(at least 4 chars part of the name, see readme.md):
+>>> cloak
+
+3 item(s) found:
+1. Recanter's cloak
+2. Everflowing cristal cloak
+3. Cloak of undead king
+Choose which one to add (enter number):
+>>> 3
+Free slot found at position 0x3D5AD
+Cloak of undead king was added to hero's inventory slot 1
+353169 bytes written
+Press Enter to continue...
+```
+
+Adding scroll with Town Portal to Sandro in command-line mode:
 ```
 >>> python -B homm3.py 1.GM1 Sandro s09
 
@@ -43,8 +66,6 @@ Spell scroll with "Town Portal" was added to hero's inventory slot 1
 353169 bytes written
 Press Enter to continue...
 ```
-Adds scroll with Town Portal to hero Sandro.
-
 
 ### Note on savegame file
 

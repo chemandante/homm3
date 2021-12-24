@@ -210,6 +210,33 @@ dicItems = {
 }
 
 
+def findItemIDByName(name):
+    name = name.lower()
+    lst = []
+    for iID in dicItems:
+        if name in dicItems[iID].lower():
+            lst.append((iID, dicItems[iID]))
+    # When only one item found, that's it!
+    n = len(lst)
+    if n == 1:
+        return lst[0][0]
+    elif n > 1:  # When there are more than one item, print them all and let the user choose
+        print("{} item(s) found:".format(n))
+        for i in range(0, n):
+            if lst[i][0][0] == "s":
+                print("{}. Spell scroll '{}'".format(i + 1, lst[i][1]))
+            else:
+                print("{}. {}".format(i + 1, lst[i][1]))
+        i = int(input("Choose which one to add (enter number):"))
+        if i < 1 or i > len(lst):
+            print("Wrong answer. Can't add item.")
+            return -1
+        return lst[i - 1][0]
+
+    print("Item not found")
+    return -2
+
+
 def my_exit(exit_code):
     input("Press Enter to continue...")
     exit(exit_code)
@@ -226,18 +253,26 @@ hero = ""
 itemID = 0
 itemName = ""
 bSpell = False
+bFromArgs = False
 
 if len(argv) > 2:
     hero = argv[2]
     itemID = argv[3]
+    bFromArgs = True
 else:
     hero = input("Enter hero name:\n")
-    itemID = input("Enter item ID (see readme.md):\n")
-
-print("")
+    itemID = input("Enter item: Artifact ID, Spell ID prefixed with 's', artifact/spell name\n"
+                   "(at least 4 chars part of the name, see readme.md):\n")
 
 hero = hero.capitalize()
 # Parse item ID (spell or artifact)
+if len(itemID) >= 4 and not bFromArgs:  # Entered name (not ID) from console input
+    itemID = findItemIDByName(itemID)
+    if type(itemID) == int:
+        my_exit(1)
+
+print("")
+
 if itemID[0].lower() == 's':
     try:
         itemID = int(itemID[1:], 16)
