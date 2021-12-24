@@ -47,7 +47,7 @@ Enter item: Artifact ID, Spell ID prefixed with 's', artifact/spell name
 
 3 item(s) found:
 1. Recanter's cloak
-2. Everflowing cristal cloak
+2. Everflowing crystal cloak
 3. Cloak of undead king
 Choose which one to add (enter number):
 >>> 3
@@ -81,7 +81,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 
 07 - Centaur's axe\
 08 - Blackshard of the dead knight\
-09 - Greater Gnoll's Fail\
+09 - Greater Gnoll's Flail\
 0A - Ogre's club of havoc\
 0B - Sword of Hellfire\
 0C - Titan's gladius\
@@ -99,7 +99,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 18 - Thunder helmet\
 19 - Beastplate of petrified wood\
 1A - Rib cage\
-1B - Scales of the greater balilisk\
+1B - Scales of the greater basilisk\
 1C - Tunic of the cyclops king\
 1D - Breastplate of brimstone\
 1E - Titan's cuirass\
@@ -108,14 +108,14 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 21 - Celestial necklace of bliss\
 22 - Lion's shield of courage\
 23 - Sword of judgement\
-24 - Helm of hevenly enlightenment\
+24 - Helm of heavenly enlightenment\
 25 - Quiet eye of the dragon\
 26 - Red dragon flame tongue\
 27 - Dragon scale shield\
 28 - Dragon scale armor\
 29 - Dragonbone greaves\
 2A - Dragon wing tabard\
-2B - Neckace of dragonteeth\
+2B - Necklace of dragonteeth\
 2C - Crown of dragontooth\
 2D - Still eye of the dragon\
 2E - Clover of fortune\
@@ -123,7 +123,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 30 - Ladybird of luck\
 31 - Badge of courage\
 32 - Crest of valor\
-33 - Gryph of gallantry\
+33 - Glyph of gallantry\
 34 - Speculum\
 35 - Spyglass\
 36 - Amulet of the undertaker\
@@ -139,7 +139,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 40 - Stoic watchman\
 41 - Emblem of cognizance\
 42 - Statesmen's medal\
-43 - Diplomat Ring\
+43 - Diplomat's Ring\
 44 - Ambassador's sash\
 45 - Ring of the wayfarer\
 46 - Equestrian's gloves\
@@ -153,10 +153,10 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 4E - Cape of conjuring\
 4F - Orb of firmament\
 50 - Orb of silt\
-51 - Orb of tempestous fire\
+51 - Orb of tempestuous fire\
 52 - Orb of driving rain\
 53 - Recanter's cloak\
-54 - Spirit of opression\
+54 - Spirit of oppression\
 55 - Hourglass of the evil hour\
 56 - Tome of fire magic\
 57 - Tome of wind magic\
@@ -168,7 +168,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 5D - Orb of vulnerability\
 5E - Ring of vitality\
 5F - Ring of life\
-60 - Vail of lifeblood\
+60 - Vial of lifeblood\
 61 - Necklace of swiftness\
 62 - Boots of speed\
 63 - Cape of velocity\
@@ -178,10 +178,10 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 67 - Pendant of life\
 68 - Pendant of death\
 69 - Pendant of free will\
-6A - Pendant of agitation\
+6A - Pendant of negativity\
 6B - Pendant of total recall\
 6C - Pendant of courage\
-6D - Everflowing cristal cloak\
+6D - Everflowing crystal cloak\
 6E - Ring of infinite gems\
 6F - Everpouring vial of mercury\
 70 - Inexhaustable cart of ore\
@@ -195,7 +195,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 78 - Torso of legion\
 79 - Arms of legion\
 7A - Head of legion\
-7B - Sea capitan's hat\
+7B - Sea captain's hat\
 7C - Spellbinder's hat\
 7D - Shackles of war\
 7E - Orb of inhibition\
@@ -208,7 +208,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 84 - Armor of the dammed\
 85 - Statue of legions\
 86 - Power of the dragon father\
-87 - Titans lightning\
+87 - Titan's thunder\
 88 - Admiral's hat\
 89 - Archer's bow
 
