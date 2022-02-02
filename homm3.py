@@ -1,7 +1,9 @@
-import gzip_homm3
 import shutil
-
+import sys
 from sys import argv
+
+import gzip_homm3
+
 
 dicItems = {
     # Artifacts
@@ -213,20 +215,21 @@ dicItems = {
 def findItemIDByName(name):
     name = name.lower()
     lst = []
-    for iID in dicItems:
-        if name in dicItems[iID].lower():
-            lst.append((iID, dicItems[iID]))
+    for key, item in dicItems.items():
+        if name in item.lower():
+            lst.append((key, item))
     # When only one item found, that's it!
     n = len(lst)
     if n == 1:
         return lst[0][0]
-    elif n > 1:  # When there are more than one item, print them all and let the user choose
-        print("{} item(s) found:".format(n))
+
+    if n > 1:  # When there are more than one item, print them all and let the user choose
+        print(f"{n} item(s) found:")
         for i in range(0, n):
             if lst[i][0][0] == "s":
-                print("{}. Spell scroll '{}'".format(i + 1, lst[i][1]))
+                print(f"{i + 1}. Spell scroll '{lst[i][1]}'")
             else:
-                print("{}. {}".format(i + 1, lst[i][1]))
+                print(f"{i + 1}. {lst[i][1]}")
         i = int(input("Choose which one to add (enter number):"))
         if i < 1 or i > len(lst):
             print("Wrong answer. Can't add item.")
@@ -239,7 +242,7 @@ def findItemIDByName(name):
 
 def my_exit(exit_code):
     input("Press Enter to continue...")
-    exit(exit_code)
+    sys.exit(exit_code)
 
 
 if not(len(argv) == 2 or len(argv) == 4):
@@ -268,7 +271,7 @@ hero = hero.capitalize()
 # Parse item ID (spell or artifact)
 if len(itemID) >= 4 and not bFromArgs:  # Entered name (not ID) from console input
     itemID = findItemIDByName(itemID)
-    if type(itemID) == int:
+    if isinstance(itemID, int):
         my_exit(1)
 
 print("")
@@ -276,7 +279,7 @@ print("")
 if itemID[0].lower() == 's':
     try:
         itemID = int(itemID[1:], 16)
-        tmp = "s{:02X}".format(itemID)
+        tmp = f"s{itemID:02X}"
         if tmp in dicItems:
             itemName = "Spell scroll with \"" + dicItems[tmp] + "\""
         else:
@@ -304,7 +307,7 @@ try:
     gm_content = bytearray(gm.read())
     gm.close()
 except FileNotFoundError as err:
-    print("File '{}' not found".format(err.filename))
+    print(f"File '{err.filename}' not found")
     my_exit(1)
 
 # Looking for hero by name (name must be followed by zero byte)
@@ -321,7 +324,7 @@ while c >= 0:
             break
 
 if c < 0:
-    print("Hero {} not found".format(hero))
+    print(f"Hero {hero} not found")
     my_exit(1)
 
 # Going to first inventory item (offset 0x18 from catapult slot)
@@ -337,8 +340,8 @@ while d < 64:
 
 if d < 64:
     c += d * 8
-    print("Free slot found at position 0x{:X}".format(c))
-    print("{} was added to hero's inventory slot {}".format(itemName, d + 1))
+    print(f"Free slot found at position 0x{c:X}")
+    print(f"{itemName} was added to hero's inventory slot {d + 1}")
     # Adding item
     if bSpell:
         gm_content[c:c + 4] = 0x01.to_bytes(4, byteorder='little')
@@ -353,10 +356,9 @@ else:
 
 # Renaming old file and writing new one
 shutil.move(gm_file, gm_file + ".bak")
-gm = open(gm_file, mode="wb")
-gm.write(gm_content)
-gm.close()
+with open(gm_file, mode="wb") as f:
+    f.write(gm_content)
 
-print("{} bytes written".format(len(gm_content)))
+print(f"{len(gm_content)} bytes written")
 
 my_exit(0)
