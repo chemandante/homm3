@@ -89,7 +89,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 0E - Shield of the yawning dead\
 0F - Buckler of the gnoll king\
 10 - Targ of the rampaging ogre\
-11 - Shield of the dammed\
+11 - Shield of the damned\
 12 - Sentinel's Shield\
 13 - Helm of the alabaster unicorn\
 14 - Skull helmet\
@@ -128,7 +128,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 35 - Spyglass\
 36 - Amulet of the undertaker\
 37 - Vampire's cowl\
-38 - Dead men's boots\
+38 - Dead man's boots\
 39 - Garniture of interference\
 3A - Surcoat of counterpoise\
 3B - Boots of polarity\
@@ -138,7 +138,7 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 3F - Bird of perception\
 40 - Stoic watchman\
 41 - Emblem of cognizance\
-42 - Statesmen's medal\
+42 - Statesman's medal\
 43 - Diplomat's Ring\
 44 - Ambassador's sash\
 45 - Ring of the wayfarer\
@@ -184,9 +184,9 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 6D - Everflowing crystal cloak\
 6E - Ring of infinite gems\
 6F - Everpouring vial of mercury\
-70 - Inexhaustable cart of ore\
+70 - Inexhaustible cart of ore\
 71 - Eversmoking ring of sulfur\
-72 - Inexhaustable cart of lumber\
+72 - Inexhaustible cart of lumber\
 73 - Endless sack of gold\
 74 - Endless bag of gold\
 75 - Endless purse of gold\
@@ -210,7 +210,10 @@ I thank [Maurice](http://heroescommunity.com/member.php3?action=viewprofile&User
 86 - Power of the dragon father\
 87 - Titan's thunder\
 88 - Admiral's hat\
-89 - Archer's bow
+89 - Bow of the Sharpshooter\
+8A - Wizard's Well\
+8B - Ring of the Magi\
+8C - Cornucopia
 
 ### Spell list
 
