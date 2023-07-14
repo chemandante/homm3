@@ -1,6 +1,6 @@
+import argparse
 import shutil
 import sys
-from sys import argv
 
 import gzip_homm3
 
@@ -248,58 +248,56 @@ def my_exit(exit_code):
     sys.exit(exit_code)
 
 
-if not(len(argv) == 2 or len(argv) == 4):
-    print("Usage:\n")
-    print("python homm3.py <savegame> [<hero name> <item ID>]")
-    my_exit(1)
+parser = argparse.ArgumentParser(description="HOMM3 command-line trainer",
+                                 epilog="You can omit hero name and item ID - script will ask for it")
+parser.add_argument("savegame", help="HOMM3 savegame file name")
+parser.add_argument("-n", dest="hero_name", metavar="<Hero name>",
+                    help="hero name")
+parser.add_argument("-i", dest="item_id", metavar="<Item ID>",
+                    help="item ID (see README.md for a list of items and spells)")
+args = parser.parse_args()
 
-gm_file = argv[1]
+gm_file = args.savegame
 gm_content = []
-hero = ""
-itemID = 0
 itemName = ""
-bSpell = False
-bFromArgs = False
+spell = False
 
-if len(argv) > 2:
-    hero = argv[2]
-    itemID = argv[3]
-    bFromArgs = True
-else:
-    hero = input("Enter hero name:\n")
-    itemID = input("Enter item: Artifact ID, Spell ID prefixed with 's', artifact/spell name\n"
-                   "(at least 4 chars part of the name, see readme.md):\n")
-
+hero = args.hero_name if args.hero_name else input("Enter hero name:\n")
 hero = hero.capitalize()
-# Parse item ID (spell or artifact)
-if len(itemID) >= 4 and not bFromArgs:  # Entered name (not ID) from console input
-    itemID = findItemIDByName(itemID)
-    if isinstance(itemID, int):
+
+if args.item_id:
+    item = args.item_id
+else:
+    item = input("Enter item: Artifact ID, Spell ID prefixed with 's', artifact/spell name\n"
+                 "(at least 4 chars part of the name, see README.md):\n")
+    # Entered name (not ID) from console input, look up item list
+    item = findItemIDByName(item)
+    if isinstance(item, int):
         my_exit(1)
 
 print("")
 
-if itemID[0].lower() == 's':
+if item[0].lower() == 's':
     try:
-        itemID = int(itemID[1:], 16)
-        tmp = f"s{itemID:02X}"
+        item = int(item[1:], 16)
+        tmp = f"s{item:02X}"
         if tmp in dicItems:
             itemName = "Spell scroll with \"" + dicItems[tmp] + "\""
         else:
             raise ValueError
-        bSpell = True
+        spell = True
 
     except ValueError:
         print("Invalid spell ID")
         my_exit(1)
 else:
     try:
-        tmp = itemID.upper()
+        tmp = item.upper()
         if tmp in dicItems:
             itemName = dicItems[tmp]
         else:
             raise ValueError
-        itemID = int(itemID, 16)
+        item = int(item, 16)
 
     except ValueError:
         print("Invalid artifact ID")
@@ -346,11 +344,11 @@ if d < 64:
     print(f"Free slot found at position 0x{c:X}")
     print(f"{itemName} was added to hero's inventory slot {d + 1}")
     # Adding item
-    if bSpell:
+    if spell:
         gm_content[c:c + 4] = 0x01.to_bytes(4, byteorder='little')
-        gm_content[c + 4:c + 8] = itemID.to_bytes(4, byteorder='little')
+        gm_content[c + 4:c + 8] = item.to_bytes(4, byteorder='little')
     else:
-        gm_content[c:c + 4] = itemID.to_bytes(4, byteorder='little')
+        gm_content[c:c + 4] = item.to_bytes(4, byteorder='little')
         gm_content[c + 4:c + 8] = 0xFFFFFFFF.to_bytes(4, byteorder='little')
 
 else:
