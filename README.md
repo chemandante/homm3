@@ -5,14 +5,14 @@ Used to add any artifact (or spell scroll) to any hero
 
 Usage:
 ```
-python -B homm3.py <savegame> [<hero name> <item ID>]
+python -B homm3.py [-h] [-n <Hero name>] [-i <Item ID>] savegame
 ```
 
 This trainer takes savegame file, looks for a hero by **hero name** and adds artifact with specified **item ID** at the first available inventory slot (backpack).
 When **hero name** and **item ID** are not specified in command-line, trainer will ask for it. In this case you can enter part ot the item name (at least 4 chars) as **item ID**. If there are more than one item containing that part of the name, you have to choose what item to pup into inventory (see examples).
 
 ```
-<item ID> := <artifact ID> | s<spell ID>
+<Item ID> := <Artifact ID> | s<Spell ID>
 ```
 
 Artifact ID should be entered in hex without '0x' prefix. See table [below](#artifact-list) for a list of all artifacts with their IDs. If you want to add a spell scroll, write 's' before spell ID (see spell list [below](#spell-list))
@@ -59,7 +59,7 @@ Press Enter to continue...
 
 Adding scroll with Town Portal to Sandro in command-line mode:
 ```
->>> python -B homm3.py 1.GM1 Sandro s09
+>>> python -B homm3.py -n Sandro -i s09 1.GM1
 
 Free slot found at position 0x3AF37
 Spell scroll with "Town Portal" was added to hero's inventory slot 1
